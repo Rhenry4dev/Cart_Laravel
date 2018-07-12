@@ -20,29 +20,20 @@ class ProductController extends Controller
     {
         $produtos = Product::all();
 
-        return view('produto.list')
-        ->with('produtos', $produtos);
+        $data = ['produtos' => $produtos];
+        return view('produto.list')->with($data);
     }
-
-/*   public function listToBuy()
-
-        {
-        $produtos = Product::all();
-
-        return view('produto.buy')
-        ->with('produtos', $produtos);
-        }*/
 
     public function show($id)
     {
-        $resposta = Product::find($id);
+        $found = Product::find($id);
 
-        if (empty($resposta)) {
+        if (empty($found)) {
             return "Esse produto não existe";
         }
 
             return view('produto.detalhes')
-            ->with('p', $resposta);
+            ->with('p', $found);
     }
     public function new()
     {
@@ -63,7 +54,6 @@ class ProductController extends Controller
         $nome =  $request->file('image')->getClientOriginalName();
         $ext = pathinfo($nome, PATHINFO_EXTENSION);
         $novo = $request->name.".".$ext;
-        #Storage::disk('local')->put(file_get_contents($folder.'/'.$data['image']));
         $request->file('image')->storeAs('', $novo);
         $nome =  $request->file('image')->getClientOriginalName();
         $ext = pathinfo($nome, PATHINFO_EXTENSION);
@@ -84,7 +74,6 @@ class ProductController extends Controller
         $nome =  $request->file('image')->getClientOriginalName();
         $ext = pathinfo($nome, PATHINFO_EXTENSION);
         $novo = $request->name.".".$ext;
-        #Storage::disk('local')->put(file_get_contents($folder.'/'.$data['image']));
         $request->file('image')->storeAs('', $novo);
         $nome =  $request->file('image')->getClientOriginalName();
         $ext = pathinfo($nome, PATHINFO_EXTENSION);

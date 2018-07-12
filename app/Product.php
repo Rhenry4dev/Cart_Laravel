@@ -8,7 +8,7 @@ class Product extends Model
 {
     public function cart()
     {
-        return $this->cart=hasMany('App\Cart_Item');
+        return $this->hasMany('App\Cart_Item');
     }
 
     protected $table = 'products';

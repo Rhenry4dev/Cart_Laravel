@@ -76,6 +76,7 @@ class RegisterController extends Controller
   
         return redirect('/login_user');
     }
+    
     public function form()
     {
         return view('produto.form_register');

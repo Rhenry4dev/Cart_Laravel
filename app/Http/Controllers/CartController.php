@@ -50,21 +50,21 @@ class CartController extends Controller
         $sol = Cart_Item::where('product_id', $request->input('product_id'))->where('cart_id', $cart->id)->first();
 
 
-        if (!$sol) { //o id do produto não existir na lista
-            $qtd = (int)$request->input('quantity');
-            $data =
-            [
-            'cart_id' => $cart->id,
-            'product_id' => $idInt,
-            'quantity' => $qtd,
+        if (!$sol) { // Se o id do produto não existir na lista.
+            $qtd = $request->input('quantity');
+            $data = [
+                'cart_id' => $cart->id,
+                'product_id' => $idInt,
+                'quantity' => $qtd,
             ];
+
             Cart_Item::create($data);
 
             return redirect()
             ->route('carrinho');
         } else {
-            $b = $sol->quantity;
-            $qtd = 1 + $b;
+            $quantity = $sol->quantity;
+            $qtd = 1 + $quantity;
             Cart_Item::where('product_id', $request->input('product_id'))->where('cart_id', $cart->id)
             ->update(['quantity' => $qtd]);
 
@@ -94,9 +94,11 @@ class CartController extends Controller
 
         $product = Cart_Item::where('product_id', $id);
         $product->delete();
+
         return redirect()
         ->route('carrinho');
     }
+
     public function atualizaCarrinho(Cart_ItemRequest $request)
     {
 
@@ -116,7 +118,7 @@ class CartController extends Controller
 
         $id = Auth::user()->id;
 
-        if ((int)$request->input('quantity') <= 1) {
+        if ($request->input('quantity') <= 1) {
             $product = Cart_Item::find($request->input('cart_id'));
             $id_product = $product->product_id;
             $qtd = 1;
@@ -125,19 +127,22 @@ class CartController extends Controller
             return redirect()
             ->route('carrinho');
         }
-        $check = (int)$request->input('product_id');
+        $check = $request->input('product_id');
         $sol = Cart_Item::where('product_id', $check)->get();
         $oldvalue = $sol[0]->quantity;
         $qtd = $oldvalue - 1;
+
         Cart_Item::where('product_id', $check)
         ->update(['quantity' => $qtd]);
+
         return redirect()
         ->route('carrinho');
     }
+
     public function listToBuy()
     {
         $produtos = Product::all();
-        return view('produto.buy')
-        ->with('produtos', $produtos);
+        $data = ['produtos' => $produtos];
+        return view('produto.list')->with($data);
     }
 }

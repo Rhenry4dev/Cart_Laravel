@@ -12,14 +12,12 @@ use App\Cart;
 use Session;
 
 class CheckOutController extends Controller
-
 {
 
-	public function __construct()
-
-	{
-    	$this->middleware('autorizador');
-	}
+    public function __construct()
+    {
+        $this->middleware('autorizador');
+    }
 
     public function cadastro()
     {
@@ -27,7 +25,7 @@ class CheckOutController extends Controller
         ->with('payments', Payment::all());
     }
 
-	public function informacoes($id)
+    public function informacoes($id)
     {
         $cart = Cart::where('token', Session::get('token'))->first();
         $orders = Order::where('cart_id', $cart->id)->first();
@@ -36,20 +34,18 @@ class CheckOutController extends Controller
         return view('checkout.info')
         ->with('address', $found)
         ->with('orders', $orders);
-        
     }
     public function close($id)
     {
 
-        $order = Order::where('id',$id)->first();
+        $order = Order::where('id', $id)->first();
         Cart::where('id', $order->cart_id)
         ->where('token', Session::get('token'))
-        ->update(['status' => 'closed']); 
-        Order::where('id',$id)
+        ->update(['status' => 'closed']);
+        Order::where('id', $id)
         ->update(['order_status' => 'closed']);
 
         return redirect()
         ->route('carrinho');
     }
-
 }

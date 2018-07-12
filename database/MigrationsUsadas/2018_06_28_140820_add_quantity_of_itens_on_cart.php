@@ -13,8 +13,7 @@ class AddQuantityOfItensOnCart extends Migration
      */
     public function up()
     {
-        schema::table('cart', function(Blueprint $table) 
-        {
+        schema::table('cart', function (Blueprint $table) {
             $table->unsignedInteger('cart_itens');
         });
     }

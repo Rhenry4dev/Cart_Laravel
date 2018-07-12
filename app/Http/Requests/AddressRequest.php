@@ -34,7 +34,7 @@ class AddressRequest extends FormRequest
             'CEP' => 'required'
         ];
     }
-        public function messages()
+    public function messages()
     {
         return [
         'user_id.required'=>'Você tem de estar logado!' ,

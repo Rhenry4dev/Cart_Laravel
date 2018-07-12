@@ -14,10 +14,9 @@ class AddOrderOnUsers extends Migration
     public function up()
     {
 
-        Schema::table('users', function (Blueprint $table) 
-        {
-        $table->mediumText('address');
-        });   
+        Schema::table('users', function (Blueprint $table) {
+            $table->mediumText('address');
+        });
     }
 
     /**

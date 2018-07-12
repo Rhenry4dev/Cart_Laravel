@@ -13,24 +13,23 @@ use Illuminate\Http\Response;
 use Illuminate\Validation\Validator;
 use Session;
 
-
 class AddressController extends Controller
 {
-	public function __construct()
+    public function __construct()
     {
         $this->middleware('autorizador');
     }
 
-	public function add(AddressRequest $request)
-	{
+    public function add(AddressRequest $request)
+    {
 
-		$data = $request->all();
-		$id = $request->user_id;
-		Address::create($data);
-		$address = Address::where('user_id', $id)->get();
-		$address_id = $address[0]->id;
-		$cart = Cart::where('token', Session::get('token'))->first();
-		$params = [
+        $data = $request->all();
+        $id = $request->user_id;
+        Address::create($data);
+        $address = Address::where('user_id', $id)->get();
+        $address_id = $address[0]->id;
+        $cart = Cart::where('token', Session::get('token'))->first();
+        $params = [
             'user_id' => $request->input('user_id'),
             'cart_id' => $cart->id,
             'payment_id' => $request->input('payment_id'),
@@ -38,9 +37,9 @@ class AddressController extends Controller
             'order_status' => 'waiting',
         ];
 
-		Order::create($params);
+        Order::create($params);
 
-		return redirect()
-		->route('checkout.carrinho', ['id' => $id]);
-	}
+        return redirect()
+        ->route('checkout.carrinho', ['id' => $id]);
+    }
 }

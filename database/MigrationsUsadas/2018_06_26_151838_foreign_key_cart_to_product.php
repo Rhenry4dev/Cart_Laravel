@@ -13,8 +13,7 @@ class ForeignKeyCartToProduct extends Migration
      */
     public function up()
     {
-        Schema::table('cart', function(Blueprint $table)
-        {
+        Schema::table('cart', function (Blueprint $table) {
             $table->unsignedInteger('product_id');
             $table->foreign('product_id')->references('id')->on('products');
         });
@@ -27,6 +26,6 @@ class ForeignKeyCartToProduct extends Migration
      */
     public function down()
     {
-       $table->dropForeign('product_id');
+        $table->dropForeign('product_id');
     }
 }

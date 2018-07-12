@@ -11,11 +11,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-       DB::table('payment_form')->insert(
-       	
+        DB::table('payment_form')->insert(
         
-        ['name'=>'Cartão de Débito']
         
-       );
+            ['name'=>'Cartão de Débito']
+        );
     }
 }

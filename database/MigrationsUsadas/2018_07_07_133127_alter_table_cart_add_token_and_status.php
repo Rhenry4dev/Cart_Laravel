@@ -13,10 +13,9 @@ class AlterTableCartAddTokenAndStatus extends Migration
      */
     public function up()
     {
-        Schema::table('cart', function (Blueprint $table) 
-        {
-        $table->string('token');
-        $table->string('status');
+        Schema::table('cart', function (Blueprint $table) {
+            $table->string('token');
+            $table->string('status');
         });
     }
 

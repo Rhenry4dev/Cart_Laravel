@@ -12,112 +12,92 @@ use App\Http\Requests\ProductRequest;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Response;
 use Illuminate\Http\Request;
-use Cookie, Session, Auth;
-
-
+use Cookie;
+use Session;
+use Auth;
 
 class CartController extends Controller
 {
 
-public function __construct()
-
-{
-    $this->middleware('autorizador');
-}
-
-public function CartAddProduct(CartRequest $request)
-
-{
-    $id = Auth::user()->id;
-
-    if((Session::get('token') && Cart::where('token', Session::get('token'))->count() > 0) && Cart::where('status', 'open'))
+    public function __construct()
     {
-        $value = Session::get('token');
+        $this->middleware('autorizador');
     }
 
-    else
-
+    public function CartAddProduct(CartRequest $request)
     {
+        $id = Auth::user()->id;
 
-        Session::put('token',  md5(microtime()));
-        $value = Session::get('token');
+        if ((Session::get('token') && Cart::where('token', Session::get('token'))->count() > 0) && Cart::where('status', 'open')) {
+            $value = Session::get('token');
+        } else {
+            Session::put('token', md5(microtime()));
+            $value = Session::get('token');
 
-        $data = [
+            $data = [
             'user_id' => $request->input('user_id'),
             'token' => $value,
             'status' => $request->input('status'),
-        ];
+            ];
 
-        Cart::create($data);
-    }
-
-
-    $cart = Cart::where('token', $value)->first();
-	$add = Product::find($request->input('product_id'));
-    $idInt = $add->id;
-    $sol = Cart_Item::where('product_id', $request->input('product_id'))->where('cart_id', $cart->id)->first();
+            Cart::create($data);
+        }
 
 
-if(!$sol) //o id do produto não existir na lista
+        $cart = Cart::where('token', $value)->first();
+        $add = Product::find($request->input('product_id'));
+        $idInt = $add->id;
+        $sol = Cart_Item::where('product_id', $request->input('product_id'))->where('cart_id', $cart->id)->first();
 
-    {
-        $qtd = (int)$request->input('quantity');
-        $data = 
-        [
+
+        if (!$sol) { //o id do produto não existir na lista
+            $qtd = (int)$request->input('quantity');
+            $data =
+            [
             'cart_id' => $cart->id,
             'product_id' => $idInt,
             'quantity' => $qtd,
-        ];
-        Cart_Item::create($data);
+            ];
+            Cart_Item::create($data);
 
-        return redirect()
-        ->route('carrinho');
-        
-    }
-    else
-    {
+            return redirect()
+            ->route('carrinho');
+        } else {
+            $b = $sol->quantity;
+            $qtd = 1 + $b;
+            Cart_Item::where('product_id', $request->input('product_id'))->where('cart_id', $cart->id)
+            ->update(['quantity' => $qtd]);
 
-        $b = $sol->quantity;
-        $qtd = 1 + $b;
-        Cart_Item::where('product_id', $request->input('product_id'))->where('cart_id', $cart->id)
-        ->update(['quantity' => $qtd]);
-
-        return redirect()
-        ->route('carrinho');
+            return redirect()
+            ->route('carrinho');
+        }
     }
 
-}
-
-public function Product_cartList()
+    public function Product_cartList()
     {
         $value = Session::get('token');
 
 
-        if(!$value)
-        {
-            Session::put('token',  md5(microtime()));
+        if (!$value) {
+            Session::put('token', md5(microtime()));
             $value = Session::get('token');
-        }        
+        }
 
         $carts = Cart::where('token', $value)->first();
 
         return view('carrinho.CartList')
         ->with('carts', $carts);
-        
     }
 
-public function ProductDelete($id)
-
+    public function ProductDelete($id)
     {
 
-    	$product = Cart_Item::where('product_id', $id);
-    	$product->delete();
-    	return redirect()
-    	->route('carrinho');
-
+        $product = Cart_Item::where('product_id', $id);
+        $product->delete();
+        return redirect()
+        ->route('carrinho');
     }
-public function atualizaCarrinho(Cart_ItemRequest $request)
-
+    public function atualizaCarrinho(Cart_ItemRequest $request)
     {
 
         $id = Auth::user()->id;
@@ -129,16 +109,14 @@ public function atualizaCarrinho(Cart_ItemRequest $request)
 
         return redirect()
         ->route('carrinho');
-
     }
 
-public function atualizaCarrinhob(Cart_ItemRequest $request)
+    public function atualizaCarrinhob(Cart_ItemRequest $request)
     {
 
         $id = Auth::user()->id;
 
-        if((int)$request->input('quantity') <= 1)
-        {
+        if ((int)$request->input('quantity') <= 1) {
             $product = Cart_Item::find($request->input('cart_id'));
             $id_product = $product->product_id;
             $qtd = 1;
@@ -146,7 +124,6 @@ public function atualizaCarrinhob(Cart_ItemRequest $request)
             ->update(['quantity' => $qtd]);
             return redirect()
             ->route('carrinho');
-
         }
         $check = (int)$request->input('product_id');
         $sol = Cart_Item::where('product_id', $check)->get();
@@ -156,13 +133,11 @@ public function atualizaCarrinhob(Cart_ItemRequest $request)
         ->update(['quantity' => $qtd]);
         return redirect()
         ->route('carrinho');
-
     }
-public function listToBuy()
+    public function listToBuy()
     {
         $produtos = Product::all();
         return view('produto.buy')
         ->with('produtos', $produtos);
-
     }
 }

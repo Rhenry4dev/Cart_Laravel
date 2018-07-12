@@ -13,12 +13,10 @@ class AddCartOnUser extends Migration
      */
     public function up()
     {
-        schema::table('users', function(Blueprint $table) 
-        {
+        schema::table('users', function (Blueprint $table) {
             $table->unsignedInteger('cart_id');
             $table->foreign('cart_id')->references('id')->on('cart');
         });
-
     }
 
     /**

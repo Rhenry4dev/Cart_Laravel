@@ -13,15 +13,14 @@ class AlterAddressAddColumns extends Migration
      */
     public function up()
     {
-        Schema::table('address_register', function (Blueprint $table) 
-        {
-        $table->string('street_name');
-        $table->unsignedInteger('number');
-        $table->string('public_place');
-        $table->string('town');
-        $table->string('state');
-        $table->string('country');
-        $table->string('CEP');
+        Schema::table('address_register', function (Blueprint $table) {
+            $table->string('street_name');
+            $table->unsignedInteger('number');
+            $table->string('public_place');
+            $table->string('town');
+            $table->string('state');
+            $table->string('country');
+            $table->string('CEP');
         });
     }
 
@@ -32,13 +31,12 @@ class AlterAddressAddColumns extends Migration
      */
     public function down()
     {
-       $table->dropColumn('street_name');
-       $table->dropColumn('number');
-       $table->dropColumn('public_place');
-       $table->dropColumn('town');
-       $table->dropColumn('state');
-       $table->dropColumn('country');
-       $table->dropColumn('CEP');
-
+        $table->dropColumn('street_name');
+        $table->dropColumn('number');
+        $table->dropColumn('public_place');
+        $table->dropColumn('town');
+        $table->dropColumn('state');
+        $table->dropColumn('country');
+        $table->dropColumn('CEP');
     }
 }

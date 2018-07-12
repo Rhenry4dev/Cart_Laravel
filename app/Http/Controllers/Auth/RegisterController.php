@@ -66,7 +66,7 @@ class RegisterController extends Controller
     protected function create()
     {
 
-        $data = Request::only('name','email', 'password', 'user_type');
+        $data = Request::only('name', 'email', 'password', 'user_type');
         User::create([
             'name' => $data['name'],
             'email' => $data['email'],

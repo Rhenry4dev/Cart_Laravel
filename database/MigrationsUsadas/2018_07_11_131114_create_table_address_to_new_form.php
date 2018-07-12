@@ -14,8 +14,7 @@ class CreateTableAddressToNewForm extends Migration
     public function up()
     {
 
-    Schema::create('address_register', function (Blueprint $table) 
-        {
+        Schema::create('address_register', function (Blueprint $table) {
             $table->increments('id');
             $table->string('address');
             $table->unsignedInteger('users_id');

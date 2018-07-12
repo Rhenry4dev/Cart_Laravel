@@ -13,8 +13,7 @@ class AddImageOnTableToShow extends Migration
      */
     public function up()
     {
-        schema::table('products', function(Blueprint $table) 
-        {
+        schema::table('products', function (Blueprint $table) {
             $table->string('image');
         });
     }
@@ -26,6 +25,6 @@ class AddImageOnTableToShow extends Migration
      */
     public function down()
     {
-       $table->dropColumn('image');
+        $table->dropColumn('image');
     }
 }

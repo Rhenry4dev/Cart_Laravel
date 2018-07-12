@@ -13,12 +13,10 @@ class AddUserIdOnCart extends Migration
      */
     public function up()
     {
-        schema::table('cart', function(Blueprint $table) 
-        {
+        schema::table('cart', function (Blueprint $table) {
             $table->unsignedInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
         });
-
     }
 
     /**

@@ -10,29 +10,29 @@ class Order extends Model
 
     public $timestamps = false;
 
-   	protected $fillable = array(
-    	'user_id', 'cart_id', 'payment_id', 'address_id', 'order_status'
+    protected $fillable = array(
+        'user_id', 'cart_id', 'payment_id', 'address_id', 'order_status'
     );
 
     protected $guarded = ['id'];
 
-	public function user()
-	{
-		return $this->belongsTo('App\User');
-	}
-
-	public function address()
-	{
-		return $this->belongsTo('App\Address');
-	}
-
-	public function cart()
-	{
-		return $this->hasMany('App\cart');
-	}
-
-        public function payment()
+    public function user()
     {
-    	return $this->belongsTo('App\Payment');
+        return $this->belongsTo('App\User');
+    }
+
+    public function address()
+    {
+        return $this->belongsTo('App\Address');
+    }
+
+    public function cart()
+    {
+        return $this->hasMany('App\cart');
+    }
+
+    public function payment()
+    {
+        return $this->belongsTo('App\Payment');
     }
 }

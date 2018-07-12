@@ -13,10 +13,9 @@ class AddStatusInOrder extends Migration
      */
     public function up()
     {
-        Schema::table('orders', function (Blueprint $table) 
-        {
-        $table->string('order_status');
-        });  
+        Schema::table('orders', function (Blueprint $table) {
+            $table->string('order_status');
+        });
     }
     /**
      * Reverse the migrations.
@@ -25,6 +24,6 @@ class AddStatusInOrder extends Migration
      */
     public function down()
     {
-       $table->dropColumn('order_status');
+        $table->dropColumn('order_status');
     }
 }

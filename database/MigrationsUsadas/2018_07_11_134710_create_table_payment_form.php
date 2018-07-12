@@ -14,13 +14,10 @@ class CreateTablePaymentForm extends Migration
     public function up()
     {
 
-     Schema::create('payment_form', function (Blueprint $table) 
-        {
+        Schema::create('payment_form', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            
         });
-     
     }
 
     /**

@@ -6,22 +6,20 @@ use Illuminate\Database\Eloquent\Model;
 
 class Cart extends Model
 {
-	public function user()
-	{
-		return $this->belongsTo('App\User');
-	}
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
 
-	public function cart_item()
-	{
-		return $this->hasMany('App\Cart_Item');
-	}
+    public function cart_item()
+    {
+        return $this->hasMany('App\Cart_Item');
+    }
 
-	protected $table = 'cart';
+    protected $table = 'cart';
     public $timestamps = false;
     protected $fillable = array(
-    	'token', 'status', 'user_id'
+        'token', 'status', 'user_id'
     );
     protected $guarded = ['id'];
-
-
 }

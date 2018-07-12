@@ -13,8 +13,7 @@ class CreateTableOrder extends Migration
      */
     public function up()
     {
-        Schema::create('orders', function (Blueprint $table) 
-        {
+        Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('cart_id');
@@ -24,8 +23,7 @@ class CreateTableOrder extends Migration
             $table->foreign('cart_id')->references('id')->on('cart');
             $table->foreign('payment_id')->references('id')->on('payment_form');
             $table->foreign('address_id')->references('id')->on('address_register');
-
-        });    
+        });
     }
 
     /**

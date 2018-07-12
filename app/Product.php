@@ -8,7 +8,7 @@ class Product extends Model
 {
     public function cart()
     {
-       return $this->cart=hasMany('App\Cart_Item');
+        return $this->cart=hasMany('App\Cart_Item');
     }
 
     protected $table = 'products';
@@ -22,6 +22,6 @@ class Product extends Model
 
     public function category()
     {
-    	return $this->belongsTo('App\Category');
+        return $this->belongsTo('App\Category');
     }
 }

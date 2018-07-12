@@ -48,12 +48,10 @@ class LoginController extends Controller
     {
         $data = Request::only('email', 'password');
 
-            if(Auth::attempt($data))
-            {
+        if (Auth::attempt($data)) {
             return redirect('/carrinho/buy');
-            }else{
-                return redirect('/login_user');
-            }
-
+        } else {
+            return redirect('/login_user');
+        }
     }
 }

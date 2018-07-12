@@ -18,7 +18,7 @@ class Cart extends Model
 
     protected $table = 'cart';
     public $timestamps = false;
-    protected $fillable = array[
+    protected $fillable = [
         'token', 'status', 'user_id'
     ];
     protected $guarded = ['id'];

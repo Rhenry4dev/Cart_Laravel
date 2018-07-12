@@ -23,6 +23,7 @@
     <td>Qtd</td>
     <td></td>
     <td>Total</td>
+
   @foreach ($carts->cart_item as $item)
     @php
       $ProductQTD = $item->product['quantity'];

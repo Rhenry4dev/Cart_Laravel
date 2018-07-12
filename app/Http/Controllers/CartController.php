@@ -143,6 +143,6 @@ class CartController extends Controller
     {
         $produtos = Product::all();
         $data = ['produtos' => $produtos];
-        return view('produto.list')->with($data);
+        return view('produto.buy')->with($data);
     }
 }

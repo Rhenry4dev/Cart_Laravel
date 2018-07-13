@@ -82,7 +82,7 @@ class ProductController extends Controller
         $update = $produto->update($data);
 
          return redirect()
-            ->route('ProductController@list')
+            ->route('index')
             ->withInput(Request::only('name'));
     }
 

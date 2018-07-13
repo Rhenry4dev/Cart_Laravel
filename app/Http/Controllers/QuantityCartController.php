@@ -19,8 +19,8 @@ class QuantityCartController extends Controller
     {
 
         $id = Auth::user()->id;
-        $sol = Cart_Item::where('product_id', $request->input('product_id'))->get();
-        $b = $sol[0]->quantity;
+        $sol = Cart_Item::where('product_id', $request->input('product_id'))->first();
+        $b = $sol->quantity;
         $qtd = 1 + $b;
         Cart_Item::where('product_id', $request->input('product_id'))
         ->update(['quantity' => $qtd]);
@@ -44,8 +44,8 @@ class QuantityCartController extends Controller
             ->route('carrinho');
         }
         $check = $request->input('product_id');
-        $sol = Cart_Item::where('product_id', $check)->get();
-        $oldvalue = $sol[0]->quantity;
+        $sol = Cart_Item::where('product_id', $check)->first();
+        $oldvalue = $sol->quantity;
         $qtd = $oldvalue - 1;
 
         Cart_Item::where('product_id', $check)

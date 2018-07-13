@@ -9,10 +9,9 @@ class Address extends Model
 
     protected $table = 'address_register';
     public $timestamps = false;
-
-    protected $fillable = array(
-        'user_id', 'street_name', 'number', 'public_place', 'town', 'state', 'country', 'CEP');
-
+    protected $fillable = [
+        'user_id', 'street_name', 'number', 'public_place', 'town', 'state', 'country', 'CEP'
+        ];
     protected $guarded = ['id'];
 
     public function order()

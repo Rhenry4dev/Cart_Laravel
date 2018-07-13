@@ -13,11 +13,9 @@ class Product extends Model
 
     protected $table = 'products';
     public $timestamps = false;
-
-    protected $fillable = array
-    (
-    'name', 'price', 'category_id', 'description', 'quantity', 'image'
-    );
+    protected $fillable = [
+        'name', 'price', 'category_id', 'description', 'quantity', 'image' 
+    ];
     protected $guarded = ['id'];
 
     public function category()

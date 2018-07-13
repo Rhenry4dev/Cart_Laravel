@@ -10,9 +10,9 @@ class Order extends Model
 
     public $timestamps = false;
 
-    protected $fillable = array(
+    protected $fillable = [
         'user_id', 'cart_id', 'payment_id', 'address_id', 'order_status'
-    );
+    ];
 
     protected $guarded = ['id'];
 

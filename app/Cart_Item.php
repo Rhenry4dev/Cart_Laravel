@@ -18,8 +18,8 @@ class Cart_Item extends Model
 
     protected $table = 'cart_items';
     public $timestamps = false;
-    protected $fillable = array(
+    protected $fillable = [
         'cart_id', 'product_id', 'quantity'
-    );
+    ];
     protected $guarded = ['id'];
 }

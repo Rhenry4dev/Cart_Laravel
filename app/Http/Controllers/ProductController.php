@@ -51,14 +51,14 @@ class ProductController extends Controller
     public function add(ProductRequest $request)
     {
         $data = $request->all();
-        $nome =  $request->file('image')->getClientOriginalName();
-        $ext = pathinfo($nome, PATHINFO_EXTENSION);
-        $novo = $request->name.".".$ext;
-        $request->file('image')->storeAs('', $novo);
-        $nome =  $request->file('image')->getClientOriginalName();
-        $ext = pathinfo($nome, PATHINFO_EXTENSION);
-        $novo = $request->name.".".$ext;
-        $data['image'] = $novo;
+        $name =  $request->file('image')->getClientOriginalName();
+        $ext = pathinfo($name, PATHINFO_EXTENSION);
+        $new = $request->name.".".$ext;
+        $request->file('image')->storeAs('', $new);
+        $name =  $request->file('image')->getClientOriginalName();
+        $ext = pathinfo($name, PATHINFO_EXTENSION);
+        $new = $request->name.".".$ext;
+        $data['image'] = $new;
         Product::create($data);
 
          return redirect()
@@ -69,17 +69,17 @@ class ProductController extends Controller
 
     public function update(ProductRequest $request)
     {
-        $produto = Product::find($request->id);
+        $product = Product::find($request->id);
         $data = $request->all();
-        $nome =  $request->file('image')->getClientOriginalName();
-        $ext = pathinfo($nome, PATHINFO_EXTENSION);
-        $novo = $request->name.".".$ext;
-        $request->file('image')->storeAs('', $novo);
-        $nome =  $request->file('image')->getClientOriginalName();
-        $ext = pathinfo($nome, PATHINFO_EXTENSION);
-        $novo = $request->name.".".$ext;
-        $data['image'] = $novo;
-        $update = $produto->update($data);
+        $name =  $request->file('image')->getClientOriginalName();
+        $ext = pathinfo($name, PATHINFO_EXTENSION);
+        $new = $request->name.".".$ext;
+        $request->file('image')->storeAs('', $new);
+        $name =  $request->file('image')->getClientOriginalName();
+        $ext = pathinfo($name, PATHINFO_EXTENSION);
+        $new = $request->name.".".$ext;
+        $data['image'] = $new;
+        $update = $product->update($data);
 
          return redirect()
             ->route('index')
@@ -93,17 +93,5 @@ class ProductController extends Controller
         $produt->delete();
         return redirect()
             ->route('index');
-    }
-
-    public function listaJson()
-    {
-        $produtos=Product::all();
-        return response()
-        ->json($produtos);
-    }
-
-    public function getPublicPath()
-    {
-        return public_path();
     }
 }

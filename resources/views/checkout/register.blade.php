@@ -16,7 +16,7 @@
 
 <h1>Cadastro :</h1>
 
-<form action="/checkout/adiciona_endereco" method="post" >
+<form action="/checkout/adiciona-endereco" method="post" >
 
 {{ csrf_field() }}
 

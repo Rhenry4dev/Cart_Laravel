@@ -18,13 +18,13 @@
     	
 
     		<td> Endereço: </td>
-    		<td>{{$address[0]->street_name}}</td>
-    		<td>{{$address[0]->number}}</td>
-    		<td>{{$address[0]->public_place}}</td>
-    		<td>{{$address[0]->town}}</td>
-    		<td>{{$address[0]->CEP}}</td>
-    		<td>{{$address[0]->state}}</td>
-    		<td>{{$address[0]->country}}</td>
+    		<td>{{$address->street_name}}</td>
+    		<td>{{$address->number}}</td>
+    		<td>{{$address->public_place}}</td>
+    		<td>{{$address->town}}</td>
+    		<td>{{$address->CEP}}</td>
+    		<td>{{$address->state}}</td>
+    		<td>{{$address->country}}</td>
     	</tr>
     		
     	<tr>

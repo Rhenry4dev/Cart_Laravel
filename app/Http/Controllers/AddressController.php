@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Response;
 use Illuminate\Validation\Validator;
 use Session;
+use Auth;
 
 class AddressController extends Controller
 {
@@ -24,9 +25,8 @@ class AddressController extends Controller
     {
 
         $data = $request->all();
-        $id = $request->user_id;
         Address::create($data);
-        $address = Address::where('user_id', $id)->first();
+        $address = Address::where('user_id', Auth::user()->id)->first();
         $cart = Cart::where('token', Session::get('token'))->first();
         $params = [
             'user_id' => $request->input('user_id'),
@@ -39,6 +39,6 @@ class AddressController extends Controller
         Order::create($params);
 
         return redirect()
-        ->route('checkout.carrinho', ['id' => $id]);
+        ->route('checkout.carrinho', ['id' => Auth::user()->id]);
     }
 }

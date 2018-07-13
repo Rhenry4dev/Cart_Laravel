@@ -30,7 +30,7 @@ class CheckOutController extends Controller
         $cart = Cart::where('token', Session::get('token'))->first();
         $orders = Order::where('cart_id', $cart->id)->first();
         
-        $found = Address::where('user_id', $id)->get();
+        $found = Address::where('user_id', $id)->first();
         return view('checkout.info')
         ->with('address', $found)
         ->with('orders', $orders);
@@ -39,13 +39,15 @@ class CheckOutController extends Controller
     {
 
         $order = Order::where('id', $id)->first();
+        Cart_Item::where('cart_id', $order->cart_id)->delete();
         Cart::where('id', $order->cart_id)
         ->where('token', Session::get('token'))
         ->update(['status' => 'closed']);
         Order::where('id', $id)
         ->update(['order_status' => 'closed']);
 
+
         return redirect()
-        ->route('carrinho');
+        ->route('carrinho.buy');
     }
 }

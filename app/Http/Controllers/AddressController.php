@@ -26,14 +26,13 @@ class AddressController extends Controller
         $data = $request->all();
         $id = $request->user_id;
         Address::create($data);
-        $address = Address::where('user_id', $id)->get();
-        $address_id = $address[0]->id;
+        $address = Address::where('user_id', $id)->first();
         $cart = Cart::where('token', Session::get('token'))->first();
         $params = [
             'user_id' => $request->input('user_id'),
             'cart_id' => $cart->id,
             'payment_id' => $request->input('payment_id'),
-            'address_id' => $address_id,
+            'address_id' => $address->id,
             'order_status' => 'waiting',
         ];
 

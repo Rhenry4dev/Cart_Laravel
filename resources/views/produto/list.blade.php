@@ -2,9 +2,9 @@
 
 @section('conteudo')
 
- @if(empty($produtos))
+ @if(empty($products))
 
- @foreach ($produtos as $p)
+ @foreach ($products as $p)
   <div class="alert alert-danger">
     Você não tem nenhum produto no Estoque.
   </div>
@@ -15,7 +15,7 @@
   <h1>Listagem de produtos</h1>
 
 
-  @foreach ($produtos as $p)
+  @foreach ($products as $p)
 <table class="table table-striped table-bordered table-hover">
     <tr class="{{$p->quantity<=1 ? 'danger' : '' }}">
       <td><img src='/storage/{{$p->image}}' height="100px" width="100px"></img></td>
@@ -43,7 +43,7 @@
   
  @endif
 
-@if(old('nome'))
+@if(old('name'))
   <div class="alert alert-success">
     <strong>Sucesso!</strong> 
       O produto {{ old('name') }} foi adicionado.

@@ -18,9 +18,9 @@ class ProductController extends Controller
 
     public function list()
     {
-        $produtos = Product::all();
+        $products = Product::all();
 
-        $data = ['produtos' => $produtos];
+        $data = ['products' => $products];
         return view('produto.list')->with($data);
     }
 
@@ -42,10 +42,10 @@ class ProductController extends Controller
 
     public function change($id)
     {
-        $produto = Product::find($id);
+        $product = Product::find($id);
         return view('produto.update_form')
         ->with('categorys', Category::all())
-        ->with('p', $produto);
+        ->with('p', $product);
     }
 
     public function add(ProductRequest $request)
@@ -88,9 +88,9 @@ class ProductController extends Controller
 
     public function remove($id)
     {
-        $produto = Product::find($id);
+        $product = Product::find($id);
             
-        $produto->delete();
+        $product->delete();
         return redirect()
             ->action('ProductController@list');
     }
@@ -100,10 +100,5 @@ class ProductController extends Controller
         $produtos=Product::all();
         return response()
         ->json($produtos);
-    }
-
-    public function getPublicPath()
-    {
-        return public_path();
     }
 }

@@ -72,7 +72,7 @@
     @else
   </table>
     <form action="{{ route('checkout.comprando')}}">
-      <button class="btn-primary" type="submit">Finalizar Pedido</button>
+      <button class="btn btn-primary" type="submit">Finalizar Pedido</button>
     </form>
   @endif
   @endif

@@ -36,7 +36,7 @@
       <td> {{$item->product['name']}} </td>
       <td class="table-secondary" > {{$item->product['price']}} </td>
       <td> {{$item->product['description']}} </td>
-      <form action="/carrinho/atualizaqtdb" method="post">
+      <form action="{{ route('carrinho.atualizaqtdb') }}" method="post">
         <input type="hidden" name="cart_id" value="{{$item->id}}">
         <input type="hidden" name="product_id" value="{{$item->product['id']}}">
         <input type="hidden" name="quantity" value= "{{ $item->quantity }}" >
@@ -48,7 +48,7 @@
 
       </td>
       </form>
-      <form action="/carrinho/atualizaqtda" method="post">
+      <form action="{{ route('carrinho.atualizaqtda') }}" method="post">
         <input type="hidden" name="cart_id" value="{{$item->id}}">
         <input type="hidden" name="product_id" value="{{$item->product['id']}}">
         <input type="hidden" name="quantity" value= "{{ $item->quantity }}" >
@@ -58,7 +58,7 @@
       </td>
       <td>{{$total}}</td>
       <td>
-        <a href="{{action('CartController@ProductDelete', $item->product['id'] )}}">Remover</a>
+        <a href="{{ route( 'carrinho.remove', ['id' => $item->product['id']] ) }}">Remover</a>
       </td>
     </tr>
     @php
@@ -71,7 +71,7 @@
     <td><p>Logue com uma conta que seja possível conlcuir as próximas etapas (Conta não-administrativa.)</p></td> 
     @else
   </table>
-    <form action='/checkout/comprando'>
+    <form action="{{ route('checkout.comprando')}}">
       <button class="btn-primary" type="submit">Finalizar Pedido</button>
     </form>
   @endif

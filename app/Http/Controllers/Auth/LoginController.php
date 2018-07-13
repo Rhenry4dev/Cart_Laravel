@@ -49,9 +49,11 @@ class LoginController extends Controller
         $data = Request::only('email', 'password');
 
         if (Auth::attempt($data)) {
-            return redirect('/carrinho/buy');
+            return redirect()
+            ->route('carrinho.buy');
         } else {
-            return redirect('/login_user');
+            return redirect('/login_user')
+            ->route('login_user-form');
         }
     }
 }

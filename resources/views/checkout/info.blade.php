@@ -37,7 +37,7 @@
     	</tr>
     </table>
     </br>
-    <form action="/checkout/close/{{$orders->id}}">
+    <form action="{{ route('checkout.close', ['id' => $orders->id]) }}">
     	<button class='btn btn-primary'type='submit'> Finalizar Compra</button>
     </form>
 

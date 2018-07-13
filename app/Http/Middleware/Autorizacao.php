@@ -17,7 +17,8 @@ class Autorizacao
     public function handle($request, Closure $next)
     {
         if (!$request->is('login') && Auth::guest()) {
-            return redirect('/login_user');
+            return redirect()
+            ->route('login_user-form');
         }
         return $next($request);
     }

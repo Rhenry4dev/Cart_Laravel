@@ -62,7 +62,7 @@ class ProductController extends Controller
         Product::create($data);
 
          return redirect()
-            ->action('ProductController@list')
+            ->route('index')
             ->withInput(Request::only('name'));
     }
 
@@ -82,7 +82,7 @@ class ProductController extends Controller
         $update = $produto->update($data);
 
          return redirect()
-            ->action('ProductController@list')
+            ->route('ProductController@list')
             ->withInput(Request::only('name'));
     }
 
@@ -90,9 +90,9 @@ class ProductController extends Controller
     {
         $product = Product::find($id);
             
-        $product->delete();
+        $produt->delete();
         return redirect()
-            ->action('ProductController@list');
+            ->route('index');
     }
 
     public function listaJson()
@@ -100,5 +100,10 @@ class ProductController extends Controller
         $produtos=Product::all();
         return response()
         ->json($produtos);
+    }
+
+    public function getPublicPath()
+    {
+        return public_path();
     }
 }

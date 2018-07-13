@@ -30,10 +30,14 @@
         </a>
       </td>
       <td>
-        <a href="{{action('ProductController@remove', $p->id )}}">Remover</a>
+        <a href="{{ route('produto.remove', [ 'id'=> $p->id ]) }}">
+        Remover
+        </a>
       </td>
       <td>
-        <a href="/produtos/atualiza_form/{{$p->id}}">Alterar</a>
+        <a href="/produtos/atualiza_form/{{$p->id}}">
+        Alterar
+        </a>
       </td>
     </tr>
 

@@ -14,12 +14,14 @@
       <td></td>
       <td></td>
       <td></td>
+      <td></td>
     <tr>
     	
 
     		<td> Endereço: </td>
     		<td>{{$address->street_name}}</td>
     		<td>{{$address->number}}</td>
+        <td>{{$address->neighbourhood}}</td>
     		<td>{{$address->public_place}}</td>
     		<td>{{$address->town}}</td>
     		<td>{{$address->CEP}}</td>

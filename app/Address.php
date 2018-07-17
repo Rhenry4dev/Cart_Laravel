@@ -10,7 +10,7 @@ class Address extends Model
     protected $table = 'address_register';
     public $timestamps = false;
     protected $fillable = [
-        'user_id', 'street_name', 'number', 'public_place', 'town', 'state', 'country', 'CEP'
+        'user_id', 'street_name', 'number', 'public_place', 'neighbourhood' , 'town', 'state', 'country', 'CEP', 'cart_token'
         ];
     protected $guarded = ['id'];
 

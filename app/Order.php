@@ -11,7 +11,7 @@ class Order extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'user_id', 'cart_id', 'payment_id', 'address_id', 'order_status'
+        'user_id', 'cart_id', 'payment_id', 'address_id', 'order_status', 'cart_token'
     ];
 
     protected $guarded = ['id'];

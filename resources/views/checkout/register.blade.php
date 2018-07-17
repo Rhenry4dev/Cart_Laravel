@@ -32,7 +32,7 @@
 
 <div class="form-group">
 	<label>Bairro :</label>
-	<input class = "form-control"  name="neighborhood" value="{{ old('neighborhood') }}">
+	<input class = "form-control"  name="neighbourhood" value="{{ old('neighborhood') }}">
 </div>
 
 <div class="form-group">
@@ -71,6 +71,7 @@
 </div>
 
 <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+<input type="hidden" name="cart_token" value="{{Session::get('token')}}">
 
 <button class="btn btn-primary" type="submit"> Finalizar </button>
 

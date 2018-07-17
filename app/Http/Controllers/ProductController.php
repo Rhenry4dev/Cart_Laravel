@@ -8,11 +8,13 @@ use App\Http\Requests\ProductRequest;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\DB;
 use Storage;
+use Auth;
 
 class ProductController extends Controller
 {
     public function __construct()
     {
+        
         $this->middleware('autorizador');
     }
 
@@ -26,14 +28,19 @@ class ProductController extends Controller
 
     public function show($id)
     {
-        $found = Product::find($id);
+        if (Auth::user()->user_type == 'admin') {
+            $found = Product::find($id);
 
-        if (empty($found)) {
-            return "Esse produto não existe";
+            if (empty($found)) {
+                return "Esse produto não existe";
+            }
+
+                return view('produto.detalhes')
+                ->with('p', $found);
+        } else {
+            return redirect()
+            ->back();
         }
-
-            return view('produto.detalhes')
-            ->with('p', $found);
     }
     public function new()
     {

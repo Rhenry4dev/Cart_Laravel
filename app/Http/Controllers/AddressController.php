@@ -34,6 +34,7 @@ class AddressController extends Controller
             'payment_id' => $request->input('payment_id'),
             'address_id' => $address->id,
             'order_status' => 'waiting',
+            'cart_token' => Session::get('token'),
         ];
 
         Order::create($params);

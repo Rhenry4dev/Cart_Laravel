@@ -2,12 +2,10 @@
 
 @section('conteudo')
 
- @if(empty($carts));
- @foreach ($carts as $cart)
+ @if(empty($carts))
   <div class="alert alert-danger">
     Você não tem nenhum produto no Carrinho.
   </div>
- @endforeach
  @else
  @php
  $subtotal = 0;

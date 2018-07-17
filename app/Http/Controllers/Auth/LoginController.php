@@ -52,7 +52,7 @@ class LoginController extends Controller
             return redirect()
             ->route('carrinho.buy');
         } else {
-            return redirect('/login_user')
+            return redirect()
             ->route('login_user-form');
         }
     }

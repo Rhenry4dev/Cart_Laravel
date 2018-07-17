@@ -16,7 +16,6 @@ Route::get('/produtos/mostra/{id}', 'ProductController@show')->where('id','[0-9]
 Route::get('/produtos/novo','ProductController@new')->name('produto.novo');
 Route::post('/produtos/adiciona', 'ProductController@add')->name('produto.adiciona');
 Route::get('/produtos/remove/{id}', 'ProductController@remove')->name('produto.remove');
-Route::get('/produtos/json', 'ProductController@listaJson')->name('produto.json');
 Route::get('/produtos/atualiza_form/{id}', 'ProductController@change')->name('produto.atualiza-form');
 Route::post('/produtos/atualizado/{id}', 'ProductController@update')->name('produto.atualizado');
 

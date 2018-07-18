@@ -346,7 +346,7 @@ hr {
 	 </td>
 </th>
 	<td class="table">
-	 <h2>{{$user->address[0]->street_name}}, {{$user->address[0]->number}}, {{dd($user->address[0])}} {{$user->address[0]->public_place}}.   </h2>
+	 <h2>{{$user->address[0]->street_name}}, {{$user->address[0]->number}} - {{$user->address[0]->neighbourhood}} {{$user->address[0]->public_place}}.   </h2>
 	</td>
 	<td class="table">
 		<h2>   {{$user->address[0]->town}}, {{$user->address[0]->state}} - {{$user->address[0]->country}}.   </h2>

@@ -7,6 +7,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Auth;
 use Request;
 
 class RegisterController extends Controller
@@ -47,7 +50,7 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    protected function validator(array $data)
+    protected function validator($data)
     {
         return Validator::make($data, [
             'name' => 'required|string|max:255',
@@ -73,6 +76,14 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
             'user_type' =>$data['user_type'],
         ]);
+
+        if (Auth::attempt($data)) {
+            return redirect()
+            ->route('carrinho.buy');
+        } else {
+            return redirect()
+            ->route('login_user-form');
+        }
   
         return redirect('/login_user');
     }

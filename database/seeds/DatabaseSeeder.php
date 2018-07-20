@@ -11,10 +11,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('payment_form')->insert(
-        
-        
-            ['name'=>'Cartão de Débito']
+        DB::table('api_tokens')->insert(
+            [
+                'name' => 'Henrique',
+                'token' => str_random(60),
+
+            ]
         );
     }
 }

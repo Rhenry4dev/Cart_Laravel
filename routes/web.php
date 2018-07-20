@@ -31,7 +31,7 @@ Route::group(['prefix' => 'carrinho'], function () {
 
 });
 
-Auth::routes();
+
 
 #Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/login_user', 'Auth\LoginController@form')->name('login_user-form');
@@ -40,7 +40,6 @@ Route::get('/logout', 'Auth\LoginController@logout');
 Route::get('/register_user', 'Auth\RegisterController@form');
 Route::post('/register_user', 'Auth\RegisterController@create');
 
-Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
@@ -52,4 +51,4 @@ Route::group(['prefix' => 'checkout'], function () {
 	Route::get('/close/{id}', 'CheckOutController@close')->name('checkout.close');	
 
 });
-Auth::routes();
+

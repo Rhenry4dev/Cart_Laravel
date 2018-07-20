@@ -19,6 +19,7 @@ class Kernel extends HttpKernel
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
         \App\Http\Middleware\TrustProxies::class,
+        
     ];
 
     /**
@@ -55,6 +56,9 @@ class Kernel extends HttpKernel
         ],
         'autorizador'=> [
             \App\Http\Middleware\Autorizacao::class,
+        ],
+        'api.auth' => [
+            \App\Http\Middleware\VerifyApiToken::class,
         ],
     ];
 

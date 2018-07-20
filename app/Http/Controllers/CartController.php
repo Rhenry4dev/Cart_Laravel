@@ -19,10 +19,6 @@ use Auth;
 class CartController extends Controller
 {
 
-    public function __construct()
-    {
-        $this->middleware('autorizador');
-    }
 
     public function CartAddProduct(CartRequest $request)
     {

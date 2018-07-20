@@ -16,7 +16,6 @@
       <td></td>
       <td></td>
     <tr>
-    	
 
     		<td> Endereço: </td>
     		<td>{{$address->street_name}}</td>

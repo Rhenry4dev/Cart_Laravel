@@ -16,6 +16,7 @@ class Cart extends Model
         return $this->hasMany('App\Cart_Item');
     }
 
+
     protected $table = 'cart';
     public $timestamps = false;
     protected $fillable = [

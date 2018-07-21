@@ -20,9 +20,17 @@ $api->version('v1.0', function ($api) {
     	$api->get('products', 'App\Http\Controllers\API\ProductController@index');
         $api->get('products/{id}', 'App\Http\Controllers\API\ProductController@show');
         $api->post('products/store', 'App\Http\Controllers\API\ProductController@store');
-        $api->post('products/update', 'App\Http\Controllers\API\ProductController@update');
-        $api->post('products/{id}', 'App\Http\Controllers\API\ProductController@delete');
+        $api->put('products/{id}/update', 'App\Http\Controllers\API\ProductController@update');
+        $api->delete('products/{id}', 'App\Http\Controllers\API\ProductController@destroy');
+
         $api->get('users', 'App\Http\Controllers\API\UserController@index');
+        $api->get('users/{id}', 'App\Http\Controllers\API\UserController@show');
+        $api->post('users/store', 'App\Http\Controllers\API\UserController@store');
+        $api->put('users/{id}/update', 'App\Http\Controllers\API\UserController@update');
+        $api->delete('users/{id}', 'App\Http\Controllers\API\UserController@destroy');
+
+        $api->get('orders', 'App\Http\Controllers\API\OrderController@index');
+        $api->get('orders/{id}', 'App\Http\Controllers\API\OrderController@show');        
 
     });
 });

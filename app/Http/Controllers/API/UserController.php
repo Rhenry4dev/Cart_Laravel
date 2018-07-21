@@ -8,34 +8,42 @@ use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\DB;
 use Storage;
 use Auth;
-use App\Http\Resources\UserCollection;
+use App\Transformers\UserTransformer;
 use Illuminate\Http\Resources\Json\Resource;
 use App\Http\Resources\UserResource;
+use Illuminate\Support\Facades\Hash;
 
 
-class UserController extends \App\Http\Controllers\Controller
+class UserController extends BaseController
 {
 
-    public function index(User $user)
+    public function index()
     {
 
         $user = User::all();
-        UserCollection::withoutWrapping();
-        return new UserCollection($user);
+
+        return $this->response->collection($user, new UserTransformer);
             
     }
 
     public function show($id)
     {
+
         $user = User::find($id);
-        UserCollection::withoutWrapping();
-        return new UserResource($user);
-            
+
+        return $this->response->item($user, new UserTransformer);    
     }
 
     public function store(UserRequestAPI $request)
     {
-        $user = User::create($request->all());
+
+        $password = Hash::make($request->password);
+        $data = [
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => $password
+                ];
+        $user = User::create($data);
 
         return response()->json($user, 201);
     }
@@ -45,7 +53,13 @@ class UserController extends \App\Http\Controllers\Controller
     {
 
         $user = User::findOrFail($id);
-        $user->update($request->all());
+        $password = Hash::make($request->password);
+        $data = [
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => $password
+                ];
+        $user->update($data);
 
         return $user;
     }

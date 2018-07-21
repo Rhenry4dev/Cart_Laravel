@@ -48,7 +48,6 @@ class ProductController extends BaseController
 
     public function update(ProductAPIRequest $request, $id)
     {
-
         $product = Product::findOrFail($id);
         $product->update($request->all());
 

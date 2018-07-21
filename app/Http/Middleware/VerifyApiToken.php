@@ -19,7 +19,6 @@ class VerifyApiToken
      */
     public function handle($request, Closure $next)
     {
-
         $token = $request->header('api_token');
 
         $apiToken = DB::table('api_tokens')->where('token', $token)->count();

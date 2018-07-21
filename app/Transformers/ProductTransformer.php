@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Transformers
+namespace App\Transformers;
 
 use League\Fractal\TransformerAbstract;
 
@@ -12,16 +12,16 @@ class ProductTransformer extends TransformerAbstract
      *
      * @return array
      */
-    public function transform(Product $product)
+    public function transform($product)
     {
 
         return [
-            'id'            => (int) $product->id,
-            'name'          => $product->name,
-            'price'         => $product->price,
-            'description'   => $product->description,
-            'quantity'      => $product->quantity,
-            'quantity'      => $product->quantity,
+            'id'          => (int) $product->id,
+            'name'        => $product->name,
+            'price'       => $product->price,
+            'description' => $product->description,
+            'quantity'    => $product->quantity,
+            'image'       => $product->image,
         ];
     }
 

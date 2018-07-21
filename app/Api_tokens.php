@@ -12,6 +12,6 @@ class Api_tokens extends Model
         'name','token'
     ];
     protected $hidden = [
-    	'id'
+        'id'
     ];
 }

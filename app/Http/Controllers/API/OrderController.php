@@ -8,7 +8,6 @@ use App\Transformers\OrderTransformer;
 use Illuminate\Http\Resources\Json\Resource;
 use Illuminate\Support\Facades\Hash;
 
-
 class OrderController extends BaseController
 {
 
@@ -18,7 +17,6 @@ class OrderController extends BaseController
         $order = Order::all();
 
         return $this->response->collection($order, new OrderTransformer);
-            
     }
 
     public function show($id)
@@ -26,6 +24,6 @@ class OrderController extends BaseController
 
         $order = Order::find($id);
 
-        return $this->response->item($order, new OrderTransformer);    
+        return $this->response->item($order, new OrderTransformer);
     }
 }

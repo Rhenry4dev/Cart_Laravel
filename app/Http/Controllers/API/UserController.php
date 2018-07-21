@@ -13,7 +13,6 @@ use Illuminate\Http\Resources\Json\Resource;
 use App\Http\Resources\UserResource;
 use Illuminate\Support\Facades\Hash;
 
-
 class UserController extends BaseController
 {
 
@@ -23,7 +22,6 @@ class UserController extends BaseController
         $user = User::all();
 
         return $this->response->collection($user, new UserTransformer);
-            
     }
 
     public function show($id)
@@ -31,7 +29,7 @@ class UserController extends BaseController
 
         $user = User::find($id);
 
-        return $this->response->item($user, new UserTransformer);    
+        return $this->response->item($user, new UserTransformer);
     }
 
     public function store(UserRequestAPI $request)

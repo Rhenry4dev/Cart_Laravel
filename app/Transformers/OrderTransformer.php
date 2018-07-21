@@ -25,5 +25,4 @@ class OrderTransformer extends TransformerAbstract
             'address' => $order->address_id,
         ];
     }
-
 }

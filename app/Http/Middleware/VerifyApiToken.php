@@ -6,8 +6,6 @@ use Closure;
 use Auth;
 use Illuminate\Support\Facades\DB;
 
-
-
 class VerifyApiToken
 {
     /**

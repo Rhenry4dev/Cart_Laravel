@@ -16,18 +16,15 @@ use Dingo\Api\Routing\Helpers;
 use Illuminate\Routing\Controller;
 use App\Transformers\ProductTransformer;
 
-
-
 class ProductController extends BaseController
 {
 
     public function index()
     {
 
-        $product = Product::all();
+        $product = Product::paginate(2);
 
-        return $this->response->collection($product, new ProductTransformer);
-            
+        return $this->response->paginator($product, new ProductTransformer);
     }
 
     public function show($id)
@@ -35,7 +32,6 @@ class ProductController extends BaseController
         $product = Product::findOrFail($id);
 
         return $this->response->item($product, new ProductTransformer);
-            
     }
 
     public function store(ProductAPIRequest $request)

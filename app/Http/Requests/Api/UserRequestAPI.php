@@ -24,10 +24,10 @@ class UserRequestAPI extends FormRequest
 
     public function wantsJson()
     {
-       return true;
+        return true;
     }
 
-    public function response(array $errors) 
+    public function response(array $errors)
     {
         return Response::create($errors, 403);
     }

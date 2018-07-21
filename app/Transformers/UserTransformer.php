@@ -22,5 +22,4 @@ class UserTransformer extends TransformerAbstract
             'user_type'   => $user->user_type,
         ];
     }
-
 }

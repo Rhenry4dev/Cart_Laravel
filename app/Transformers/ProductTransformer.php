@@ -24,5 +24,4 @@ class ProductTransformer extends TransformerAbstract
             'image'       => $product->image,
         ];
     }
-
 }

@@ -11,10 +11,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('api_tokens')->insert(
+        DB::table('users')->insert(
             [
                 'name' => 'Henrique',
-                'token' => str_random(60),
+                'email' => 'henrique@bubb.com.br',
+                'password' => Hash::make('102030'),
+                'user_type' => 'admin',
 
             ]
         );

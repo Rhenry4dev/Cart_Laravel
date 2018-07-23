@@ -30,7 +30,7 @@ Route::group(['prefix' => 'carrinho'], function () {
 	Route::post('/atualizaqtdb', 'QuantityCartController@atualizaCarrinhob')->name('carrinho.atualizaqtdb');
 
 });
-
+Auth::routes();
 
 
 #Route::get('/home', 'HomeController@index')->name('home');
